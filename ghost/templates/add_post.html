@@ -1,0 +1,9 @@
+<h1>Post your Boast or Roast</h1>
+<h3>
+    <a href="/">Home</a>
+</h3>
+<form action="" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Submit" />
+</form>

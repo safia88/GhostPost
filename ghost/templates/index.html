@@ -1,0 +1,74 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+</html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{% static 'style.css' %}" />
+</head>
+
+<body class="container">
+    <h3>Ghost posts</h3>
+    <div class="btn-section">
+        <button><a href="/">All</a></button>
+        <button><a href="/boasts/">Boasts</a></button>
+        <button><a href="/roasts/">Roasts</a></button>
+        <button><a href="/sorted/">By Votes</a></button>
+        <button><a href="/add_post/">Add Post</a></button>
+    </div>
+
+    {% if posts %}
+    <div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Content</th>
+                    <th>Type</th>
+                    <th>Up Vote</th>
+                    <th>Down Vote</th>
+                    <th>Total Vote</th>
+                    <th>Date</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in posts %}
+                <tr>
+                    <td>{{item.content}}</td>
+                    <td>
+                        {% if item.is_boast %}
+                        <span>Boast</span>
+                        {% else %}
+                        <span>Roast</span>
+                        {% endif %}
+                    </td>
+                    <td>{{item.up_votes}}</td>
+                    <td>{{item.down_votes}}</td>
+                    <td>{{item.total_votes}}</td>
+                    <td>{{item.submit_time}}</td>
+                    <td>
+                        <button>
+                            <a href='/upvote/{{ item.id}}/'>Upvote</a>
+                        </button>
+                        <button>
+                            <a href='/downvote/{{item.id}}/'>Downvote</a>
+                        </button>
+                        <button>
+                            <a href='/delete/{{item.id}}/'>Delete Post</a>
+                        </button>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+    <h5>No posts found</h5>
+    {% endif %}
+
+
+</body>
