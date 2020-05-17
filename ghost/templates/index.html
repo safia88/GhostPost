@@ -58,17 +58,34 @@
                             <a href='/downvote/{{item.id}}/'>Downvote</a>
                         </button>
                         <button>
-                            <a href='/delete/{{item.id}}/'>Delete Post</a>
+                            <a href='/posts/{{item.id}}/'>Detail</a>
                         </button>
                     </td>
                 </tr>
                 {% endfor %}
             </tbody>
+            <tfoot style="color: red;">
+                <tr>
+                    <td>Post Found: </td>
+                    <td>{{posts.count}}</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tfoot>
         </table>
     </div>
     {% else %}
     <h5>No posts found</h5>
     {% endif %}
-
+    <br>
+    {% if messages %}
+    {% for message in messages %}
+    <a href="{{message}}">{{message}}</a>
+    <p>Keep this link secure; this is your private link for managing this post!</p>
+    {% endfor %}
+    {% endif %}
 
 </body>

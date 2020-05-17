@@ -15,6 +15,7 @@ class Post(models.Model):
     down_votes = models.IntegerField(default=0)
     total_votes = models.IntegerField(default=0)
     submit_time = models.DateTimeField(auto_now_add=True, blank=True)
+    secret_key = models.CharField(max_length=6)
 
     @property
     def count(self):

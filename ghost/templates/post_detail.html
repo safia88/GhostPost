@@ -1,0 +1,39 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+</html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{% static 'style.css' %}" />
+</head>
+
+<body class="container">
+    <a href="/">Go Home</a>
+    <h3>Post detail</h3>
+
+    {% if post %}
+    <p>Content: {{post.content}}</p>
+    <p>Type:
+        {% if post.is_boast %}
+        Boast
+        {% else %}
+        Roast
+        {% endif %}
+    </p>
+    <p>Up Vote: {{post.up_votes}}</p>
+    <p>Down Vote: {{post.down_votes}}</p>
+    <p>Total Vote: {{post.total_votes}}</p>
+    <p>Date: {{post.submit_time}}</p>
+    {% if private_url %}
+    <button>
+        <a href='{{private_url}}'>Delete Post</a>
+    </button>
+    {% endif %}
+    {% else %}
+    <h5>No post found</h5>
+    {% endif %}
+</body>
